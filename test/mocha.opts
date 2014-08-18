@@ -1,0 +1,6 @@
+--require chai
+--globals request,chai
+--check-leaks
+--recursive
+--sort
+test/test.*.js
