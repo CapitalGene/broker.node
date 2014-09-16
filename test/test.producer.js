@@ -15,9 +15,9 @@ describe('Producer', function () {
   beforeEach(function () {
     this.connection = new Connection(this.testOptions);
     this.producer = new Producer({
-      routingKey: 'broker.test.producer'
+      routingKey: 'broker.test.producer',
+      channel: this.connection.channel()
     });
-    this.producer.setChannel(this.connection.channel());
     return this.connection.connect();
   });
   afterEach(function () {
@@ -50,7 +50,6 @@ describe('Producer', function () {
         exchange: exchange,
         channel: this.connection.channel()
       });
-      this.producer.setChannel(this.connection.channel());
       var message = new Message({
         body: {
           lol: 'lol'
