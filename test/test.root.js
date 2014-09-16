@@ -7,10 +7,6 @@ global.sinon = require('sinon');
 
 before(function () {
   this.testOptions = {
-    host: 'rmq.cloudapp.net',
-    port: 25673,
-    username: 'cg_test',
-    password: 'cg_test',
-    vhost: 'cg_test',
+    uri: 'amqp://cg_test:cg_test@rmq.cloudapp.net:25673/cg_test'
   };
 });
