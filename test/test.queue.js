@@ -22,9 +22,9 @@ describe('Queue', function () {
         name: 'broker.test.queue',
         durable: false,
         exclusive: true,
-        autoDelete: true
+        autoDelete: true,
+        channel: this.connection.channel()
       });
-      queue.setChannel(this.connection.channel());
       queue.checkQueue('broker.test.queue')
         .then(function (result) {
           debug('checkQueue', result);
@@ -37,9 +37,9 @@ describe('Queue', function () {
         name: 'broker.test.queue',
         durable: false,
         exclusive: true,
-        autoDelete: true
+        autoDelete: true,
+        channel: this.connection.channel()
       });
-      queue.setChannel(this.connection.channel());
       queue.queueDeclare()
         .then(function () {
           return queue.checkQueue('broker.test.queue');
@@ -58,9 +58,9 @@ describe('Queue', function () {
           routingKey: 'broker.test.queue',
           durable: false,
           exclusive: true,
-          autoDelete: true
+          autoDelete: true,
+          channel: this.connection.channel()
         });
-        queue.setChannel(this.connection.channel());
         var exchange = new Exchange({
           name: 'broker.test',
           type: 'topic',
@@ -84,17 +84,17 @@ describe('Queue', function () {
           name: 'broker.test',
           type: 'topic',
           durable: false,
-          autoDelete: true
+          autoDelete: true,
+          channel: this.connection.channel()
         });
-        exchange.setChannel(this.connection.channel());
         var queue = new Queue({
           name: 'broker.test.queue',
           routingKey: 'broker.test.queue',
           durable: false,
           exclusive: true,
-          autoDelete: true
+          autoDelete: true,
+          channel: this.connection.channel()
         });
-        queue.setChannel(this.connection.channel());
         exchange.declare()
           .then(function () {
             return queue.queueDeclare();
@@ -120,8 +120,7 @@ describe('Queue', function () {
         durable: false,
         exclusive: true,
         autoDelete: true
-      });
-      queue.setChannel(this.connection.channel());
+      }).use(this.connection.channel());
       queue.queueDeclare()
         .then(function () {
           return queue.checkQueue('broker.test.queue');
@@ -154,9 +153,9 @@ describe('Queue', function () {
         routingKey: 'broker.test.#',
         durable: false,
         exclusive: true,
-        autoDelete: true
+        autoDelete: true,
+        channel: this.connection.channel()
       });
-      queue.setChannel(this.connection.channel());
       queue.queueDeclare()
         .then(function () {
           return queue.checkQueue();
@@ -212,9 +211,9 @@ describe('Queue', function () {
         }],
         durable: false,
         exclusive: true,
-        autoDelete: true
+        autoDelete: true,
+        channel: this.connection.channel()
       });
-      queue.setChannel(this.connection.channel());
       queue.declare()
         .should.notify(done);
     });
@@ -230,16 +229,14 @@ describe('Queue', function () {
         name: 'broker.test.producer1',
         type: 'topic',
         durable: false,
-        autoDelete: true,
-        channel: this.connection.channel()
-      });
+        autoDelete: true
+      }).use(this.connection.channel());
       exch2 = new Exchange({
         name: 'broker.test.producer2',
         type: 'topic',
         durable: false,
         autoDelete: true,
-        channel: this.connection.channel()
-      });
+      }).use(this.connection.channel());
       queue1 = new Queue({
         name: 'broker.test.queue1',
         routingKey: 'broker.test.queue1',
@@ -248,16 +245,14 @@ describe('Queue', function () {
           exchange: exch2,
           routingKey: 'broker.test.queue1'
         }],
-        channel: this.connection.channel()
-      });
+      }).use(this.connection.channel());
       // queue2 only bind exchange 2
       // but will receive all message `broker.test.#`
       queue2 = new Queue({
         name: 'broker.test.queue2',
         routingKey: 'broker.test.#',
         exchange: exch2,
-        channel: this.connection.channel()
-      });
+      }).use(this.connection.channel());
       queue1ConsumerTag = uuid.v4();
       queue2ConsumerTag = uuid.v4();
       queue1Received = [];
@@ -283,13 +278,13 @@ describe('Queue', function () {
     afterEach(function () {
       var self = this;
       return Promise.join(
-        queue1.cancel(queue1ConsumerTag),
-        queue2.cancel(queue2ConsumerTag),
-        queue1.delete(),
-        queue2.delete(),
-        exch1.delete(),
-        exch2.delete()
-      )
+          queue1.cancel(queue1ConsumerTag),
+          queue2.cancel(queue2ConsumerTag),
+          queue1.delete(),
+          queue2.delete(),
+          exch1.delete(),
+          exch2.delete()
+        )
         .then(function () {
           return self.connection.close();
         });
