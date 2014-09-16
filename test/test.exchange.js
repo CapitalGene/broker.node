@@ -47,9 +47,9 @@ describe('Exchange', function () {
         name: 'broker.test',
         type: 'topic',
         durable: false,
-        autoDelete: true
+        autoDelete: true,
+        channel: this.connection.channel()
       });
-      this.exchange.channel = this.connection.channel();
       return this.connection.connect()
         .then(function () {
           return self.exchange.declare();
@@ -78,9 +78,9 @@ describe('Exchange', function () {
         name: 'broker.test',
         type: 'topic',
         durable: false,
-        autoDelete: true
+        autoDelete: true,
+        channel: this.connection.channel()
       });
-      this.exchange.channel = this.connection.channel();
       return this.connection.connect()
         .then(function () {
           return self.exchange.declare();
