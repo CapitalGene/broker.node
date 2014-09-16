@@ -2,7 +2,7 @@
   "name": "broker-node",
   "version": "0.0.1",
   "description": "broker",
-  "main": "process.js",
+  "main": "lib/index.js",
   "private": true,
   "directories": {
     "test": "test"
