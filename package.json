@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "broker",
   "main": "process.js",
+  "private": true,
   "directories": {
     "test": "test"
   },
@@ -25,13 +26,15 @@
     "chai-things": "^0.2.0",
     "mocha": "^1.21.4",
     "sinon": "^1.10.3",
-    "sinon-chai": "^2.5.0",
+    "sinon-chai": "^2.5.0"
   },
   "dependencies": {
-    "amqplib": "uschen/amqp.node",
+    "amqplib": "git+ssh://git@lcsrc.cloudapp.net:capitalgene/amqp-node.git",
     "bluebird": "^2.3.0",
-    "debug": "^1.0.4",
+    "debug": ">=2.0.0",
+    "generic-pool": "^2.1.1",
     "grunt": "^0.4.5",
-    "lodash": "^2.4.1"
+    "lodash": "^2.4.1",
+    "node-uuid": "^1.4.1"
   }
 }

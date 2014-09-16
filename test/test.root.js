@@ -1,16 +1,16 @@
+'use strict';
 var chai = require('chai');
 global.expect = chai.expect;
 chai.should();
 chai.use(require('chai-as-promised'));
 global.sinon = require('sinon');
-// var heapdump = require('heapdump')
-//
-// after(function (done) {
-//   this.timeout(20000);
-//   setTimeout(function () {
-//     heapdump.writeSnapshot(function () {
-//       console.log('dump complete');
-//       done();
-//     });
-//   }, 10000);
-// });
+
+before(function () {
+  this.testOptions = {
+    host: 'rmq.cloudapp.net',
+    port: 25673,
+    username: 'cg_test',
+    password: 'cg_test',
+    vhost: 'cg_test',
+  };
+});
