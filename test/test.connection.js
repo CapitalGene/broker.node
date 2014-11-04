@@ -10,46 +10,39 @@ var Consumer = require('./../lib/consumer');
 
 describe('Connection', function () {
   this.timeout(10 * 1000);
-  var testOptions = {
-    host: 'rmq.cloudapp.net',
-    port: 25673,
-    username: 'cg_test',
-    password: 'cg_test',
-    vhost: 'cg_test',
-  };
   describe('#constructor(options)', function () {
     before(function () {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
     });
     after(function () {
       this.connection = null;
     });
     it('sets `host`', function () {
       expect(this.connection.host)
-        .to.equal(testOptions.host);
+        .to.equal(this.testOptions.host);
     });
     it('sets `port`', function () {
       expect(this.connection.port)
-        .to.equal(testOptions.port);
+        .to.equal(this.testOptions.port);
     });
     it('sets `username`', function () {
       expect(this.connection.username)
-        .to.equal(testOptions.username);
+        .to.equal(this.testOptions.username);
     });
     it('sets `password`', function () {
       expect(this.connection.password)
-        .to.equal(testOptions.password);
+        .to.equal(this.testOptions.password);
     });
     it('sets `vhost`', function () {
       expect(this.connection.vhost)
-        .to.equal(testOptions.vhost);
+        .to.equal(this.testOptions.vhost);
     });
     it('sets `uri`', function () {
       expect(this.connection.uri).to.exist;
     });
     it('sets `_options`', function () {
       expect(this.connection._options)
-        .to.equal(testOptions);
+        .to.equal(this.testOptions);
     });
     it('sets privates vars to default values', function () {
       expect(this.connection._connection).to.be.null;
@@ -59,7 +52,7 @@ describe('Connection', function () {
   });
   describe('#getConnection()', function () {
     beforeEach(function () {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
     });
     afterEach(function (done) {
       var self = this;
@@ -90,7 +83,7 @@ describe('Connection', function () {
   });
   describe('#connect()', function () {
     beforeEach(function () {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
     });
     afterEach(function () {
       this.connection.close();
@@ -110,7 +103,7 @@ describe('Connection', function () {
   });
   describe('#close()', function () {
     beforeEach(function () {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
       return this.connection.connect();
     });
     afterEach(function () {
@@ -134,7 +127,7 @@ describe('Connection', function () {
   });
   describe('#channel()', function () {
     beforeEach(function () {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
       return this.connection.connect();
     });
     afterEach(function () {
@@ -155,7 +148,7 @@ describe('Connection', function () {
   });
   describe.skip('#getDefaultChannel()', function () {
     beforeEach(function () {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
       return this.connection.connect();
     });
     afterEach(function () {
@@ -176,7 +169,7 @@ describe('Connection', function () {
   });
   describe('#Producer(options)', function() {
     before(function() {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
     });
     it('will return an instanceof Producer', function(done) {
       var producer = this.connection.Producer();
@@ -187,7 +180,7 @@ describe('Connection', function () {
   });
   describe('#Consumer(options)', function() {
     before(function() {
-      this.connection = new Connection(testOptions);
+      this.connection = new Connection(this.testOptions);
     });
     it('will return an instanceof Consumer', function(done) {
       var consumer = this.connection.Consumer();

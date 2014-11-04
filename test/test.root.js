@@ -5,13 +5,25 @@
  * @author Chen Liang [code@chen.technology]
  */
 var chai = require('chai');
+var urlLib = require('url');
 global.expect = chai.expect;
 chai.should();
 chai.use(require('chai-as-promised'));
 global.sinon = require('sinon');
 
+var debug = require('debug')('broker:test:root');
 before(function () {
+  var uri = process.env.URI || 'amqp://localhost';
+  var parsedUri = urlLib.parse(uri);
+  var username = parsedUri.auth ? parsedUri.auth.split(':')[0]: undefined;
+  var password = parsedUri.auth ? parsedUri.auth.split(':')[1]: undefined;
   this.testOptions = {
-    uri: 'amqp://cg_test:cg_test@rmq.cloudapp.net:25673/cg_test'
+    uri: uri,
+    host: parsedUri.hostname,
+    port: parsedUri.port,
+    username: username,
+    password: password,
+    vhost: parsedUri.pathname,
   };
+  debug(this.testOptions);
 });
