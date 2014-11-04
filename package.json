@@ -12,24 +12,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@lcsrc.cloudapp.net:capitalgene/broker-node.git"
+    "url": "https://github.com/CapitalGene/broker.node.git"
   },
   "author": "Chen Liang",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "http://lcsrc.cloudapp.net/capitalgene/broker-node/issues"
+    "url": "https://github.com/CapitalGene/broker.node/issues"
   },
-  "homepage": "http://lcsrc.cloudapp.net/capitalgene/broker-node",
+  "homepage": "https://github.com/CapitalGene/broker.node",
   "devDependencies": {
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",
     "chai-things": "^0.2.0",
-    "mocha": "^1.21.4",
+    "mocha": "^2.0.1",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0"
   },
   "dependencies": {
-    "amqplib": "git+ssh://git@lcsrc.cloudapp.net:capitalgene/amqp-node.git",
+    "amqplib": "CapitalGene/amqp.node",
     "bluebird": "^2.3.0",
     "debug": ">=2.0.0",
     "generic-pool": "^2.1.1",
