@@ -2,6 +2,7 @@
 /**
  * Test Producer
  *
+ * @author Chen Liang [code@chen.technology]
  */
 var Promise = require('bluebird');
 var Connection = require('./../lib/connection.js');

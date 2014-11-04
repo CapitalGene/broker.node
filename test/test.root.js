@@ -1,4 +1,9 @@
 'use strict';
+/**
+ * Root tests
+ *
+ * @author Chen Liang [code@chen.technology]
+ */
 var chai = require('chai');
 global.expect = chai.expect;
 chai.should();

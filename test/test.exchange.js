@@ -2,6 +2,7 @@
 /**
  * Test Exchange
  *
+ * @author Chen Liang [code@chen.technology]
  */
 var Connection = require('./../lib/connection.js');
 var Exchange = require('./../lib/exchange.js');

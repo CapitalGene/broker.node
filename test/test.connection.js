@@ -1,5 +1,7 @@
 /**
  * test connection.js
+ *
+ * @author Chen Liang [code@chen.technology]
  */
 'use strict';
 var Connection = require('./../lib/connection.js');

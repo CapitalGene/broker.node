@@ -2,6 +2,7 @@
 /**
  * Test Queue
  *
+ * @author Chen Liang [code@chen.technology]
  */
 var Connection = require('./../lib/connection.js');
 var Queue = require('./../lib/queue.js');

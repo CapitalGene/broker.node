@@ -1,5 +1,7 @@
 /**
  * test Consumer
+ *
+ * @author Chen Liang [code@chen.technology]
  */
 'use strict';
 var Promise = require('bluebird');
