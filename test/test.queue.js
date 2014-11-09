@@ -4,6 +4,10 @@
  *
  * @author Chen Liang [code@chen.technology]
  */
+
+/*!
+ * Module dependencies.
+ */
 var Connection = require('./../lib/connection.js');
 var Queue = require('./../lib/queue.js');
 var Exchange = require('./../lib/exchange.js');

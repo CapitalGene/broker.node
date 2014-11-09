@@ -4,6 +4,10 @@
  *
  * @author Chen Liang [code@chen.technology]
  */
+
+/*!
+ * Module dependencies.
+ */
 var Connection = require('./../lib/connection.js');
 var Exchange = require('./../lib/exchange.js');
 var debug = require('debug')('broker:test:exchange');

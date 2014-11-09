@@ -4,6 +4,10 @@
  *
  * @author Chen Liang [code@chen.technology]
  */
+
+/*!
+ * Module dependencies.
+ */
 var chai = require('chai');
 var urlLib = require('url');
 global.expect = chai.expect;

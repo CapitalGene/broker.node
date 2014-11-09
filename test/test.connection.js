@@ -1,9 +1,13 @@
+'use strict';
 /**
  * test connection.js
  *
  * @author Chen Liang [code@chen.technology]
  */
-'use strict';
+
+/*!
+ * Module dependencies.
+ */
 var Connection = require('./../lib/connection.js');
 var Producer = require('./../lib/producer');
 var Consumer = require('./../lib/consumer');

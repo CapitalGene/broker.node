@@ -1,9 +1,13 @@
+'use strict';
 /**
  * test Consumer
  *
  * @author Chen Liang [code@chen.technology]
  */
-'use strict';
+
+/*!
+ * Module dependencies.
+ */
 var Promise = require('bluebird');
 var Connection = require('./../lib/connection.js');
 var Queue = require('./../lib/queue.js');
