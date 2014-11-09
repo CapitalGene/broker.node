@@ -226,4 +226,124 @@ describe('Consumer', function () {
       });
     });
   });
+  describe('#qos(options)', function () {
+    var consumer;
+    var receivedMessages;
+    var ackMessageFunctions;
+    beforeEach(function () {
+      receivedMessages = [];
+      ackMessageFunctions = [];
+      var messageHandler = function (message) {
+        receivedMessages.push(message);
+        ackMessageFunctions.push(function () {
+          return message.ack();
+        });
+        debug('messageHandler', receivedMessages.length);
+      };
+      consumer = new Consumer({
+        noAck: false,
+        channel: this.connection.channel(),
+        queues: [queue2],
+        messageHandler: messageHandler
+      });
+      return consumer.declare()
+        .then(function () {
+          return consumer.consume();
+        });
+    });
+    describe('when options.prefetchCount=1,applyGlobal=true', function () {
+      beforeEach(function (done) {
+        consumer.qos({
+          prefetchCount: 1,
+          applyGlobal: true
+        })
+          .then(function (response) {
+            debug('qos', 'response', response);
+          })
+          .should.notify(done);
+      });
+      it('receives one message only', function (done) {
+        var publishingPromise = Promise.resolve();
+        var publishAndSetPromise = function (i) {
+          return function () {
+            publishingPromise = producer2.publish('m' + i);
+          };
+        };
+        for (var i = 0; i < 10; i++) {
+          publishingPromise
+            .then(publishAndSetPromise(i));
+        }
+        publishingPromise
+          .delay(500)
+          .then(function () {
+            receivedMessages.should.have.lengthOf(1);
+            return receivedMessages[0].getPayload();
+          })
+          .then(function (payload) {
+            payload.should.equal('m0');
+          })
+          .then(function () {
+            return ackMessageFunctions[0]();
+          })
+          .delay(200)
+          .then(function () {
+            receivedMessages.should.have.lengthOf(2);
+            return receivedMessages[1].getPayload();
+          })
+          .then(function (payload) {
+            payload.should.equal('m1');
+          })
+          .should.notify(done);
+      });
+    });
+    describe('when options.prefetchCount=2,applyGlobal=true', function () {
+      beforeEach(function (done) {
+        consumer.qos({
+          prefetchCount: 2,
+          applyGlobal: true
+        })
+          .then(function (response) {
+            debug('qos', 'response', response);
+          })
+          .should.notify(done);
+      });
+      it('receives one message only', function (done) {
+        var publishingPromise = Promise.resolve();
+        var publishAndSetPromise = function (i) {
+          return function () {
+            publishingPromise = producer2.publish('m' + i);
+          };
+        };
+        for (var i = 0; i < 10; i++) {
+          publishingPromise
+            .then(publishAndSetPromise(i));
+        }
+        publishingPromise
+          .delay(500)
+          .then(function () {
+            receivedMessages.should.have.lengthOf(2);
+            return receivedMessages[0].getPayload();
+          })
+          .then(function (payload) {
+            payload.should.equal('m0');
+            return receivedMessages[1].getPayload();
+          })
+          .then(function (payload) {
+            payload.should.equal('m1');
+          })
+          .then(function () {
+            return ackMessageFunctions[0]();
+          })
+          .delay(200)
+          .then(function () {
+            receivedMessages.should.have.lengthOf(3);
+            return receivedMessages[2].getPayload();
+          })
+          .then(function (payload) {
+            payload.should.equal('m2');
+          })
+          .should.notify(done);
+      });
+    });
+  });
 });
