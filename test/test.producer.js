@@ -14,6 +14,7 @@ var Queue = require('./../lib/queue.js');
 var Exchange = require('./../lib/exchange.js');
 var Message = require('./../lib/message.js');
 var Producer = require('./../lib/producer.js');
+var Router = require('./../lib/router.js');
 var debug = require('debug')('broker:test:producer');
 
 describe('Producer', function () {
@@ -71,6 +72,16 @@ describe('Producer', function () {
           return Promise.all(msgs);
         })
         .should.notify(done);
+    });
+  });
+  describe('#route(options)', function() {
+    it('returns an instance of Router', function() {
+      var route = this.producer.route({
+        routingKey: 'broker.test.route'
+      });
+      route.should.be.an.instanceOf(Router);
+      route.options.routingKey.should.equal('broker.test.route');
+      route.producer.should.equal(this.producer);
     });
   });
 });
