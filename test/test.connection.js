@@ -247,6 +247,23 @@ describe('Connection', function () {
         .should.notify(done);
     });
   });
+  describe('when _connection emits `error`', function () {
+    beforeEach(function (done) {
+      this.connection = new Connection(this.testOptions);
+      this.connection.connect()
+        .should.notify(done);
+    });
+    afterEach(function () {
+      this.connection.close();
+      this.connection = null;
+    });
+    it('throws', function () {
+      var self = this;
+      expect(function () {
+        self.connection._connection.emit('error', new Error('fake error'));
+      }).to.throw;
+    });
+  });
   describe.skip('#getDefaultChannel()', function () {
     beforeEach(function () {
       this.connection = new Connection(this.testOptions);
