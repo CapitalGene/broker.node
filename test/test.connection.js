@@ -264,27 +264,6 @@ describe('Connection', function () {
       }).to.throw;
     });
   });
-  describe.skip('#getDefaultChannel()', function () {
-    beforeEach(function () {
-      this.connection = new Connection(this.testOptions);
-      return this.connection.connect();
-    });
-    afterEach(function () {
-      if (this.connection._connection) {
-        return this.connection._connection.close();
-      }
-    });
-    it('resolve new channel and set to _defaultChannel', function (done) {
-      var self = this;
-      expect(this.connection._defaultChannel).to.not.exist;
-      this.connection.getDefaultChannel()
-        .should.be.fulfilled
-        .then(function (createdChannel) {
-          expect(self.connection._defaultChannel).to.exist;
-        })
-        .should.notify(done);
-    });
-  });
   describe('#Producer(options)', function () {
     before(function () {
       this.connection = new Connection(this.testOptions);
