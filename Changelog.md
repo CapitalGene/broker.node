@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.0.6 (2015-03-20)
+* [Message] fixed `body` in constructor
+
 ## v0.0.5 (2015-03-20)
 * [Message] fixed `.fromRawMessage` headers
 
