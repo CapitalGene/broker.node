@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.0.8
+* [Connection] takes `options.transportOptions`
+
 ## v0.0.7 (2015-03-20)
 * [Message] `body` default to `null`
 

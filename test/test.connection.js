@@ -56,6 +56,40 @@ describe('Connection', function () {
       expect(this.connection._defaultChannel).to.be.null;
       expect(this.connection._closed).to.be.null;
     });
+    it('takes options.transportOptions', function () {
+      var testOptions = _.clone(this.testOptions);
+      testOptions.transportOptions = {
+        keepAlive: false,
+        clientProperties: {
+          product: 'broker-node-test',
+          version: '0.0.0',
+          platform: 'node-test',
+          information: 'no info',
+          capabilities: {
+            publisher_confirms: false
+          }
+        }
+      };
+      var connection = new Connection(testOptions);
+      connection.should.have.property('transportOptions')
+        .that.deep.equal({
+          keepAlive: false,
+          clientProperties: {
+            product: 'broker-node-test',
+            version: '0.0.0',
+            platform: 'node-test',
+            information: 'no info',
+            'capabilities': {
+              'publisher_confirms': true,
+              'exchange_exchange_bindings': true,
+              'basic.nack': true,
+              'consumer_cancel_notify': true,
+              'connection.blocked': true,
+              'authentication_failure_close': true
+            }
+          }
+        });
+    });
   });
   describe('#getConnection()', function () {
     beforeEach(function () {
