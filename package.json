@@ -1,6 +1,6 @@
 {
   "name": "broker-node",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "broker",
   "main": "lib/index.js",
   "private": true,
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/CapitalGene/broker.node",
   "devDependencies": {
     "chai": "^2.1.1",
-    "chai-as-promised": "^4.1.1",
+    "chai-as-promised": "^5.0.0",
     "chai-things": "^0.2.0",
     "mocha": "^2.1.0",
     "sinon": "^1.12.2",

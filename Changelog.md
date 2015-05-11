@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.0.9
+* `chai-as-promised@5.0.0`
+* *Producer#publish* supports `options.headers` 
+
 ## v0.0.8
 * [Connection] takes `options.transportOptions`
 
