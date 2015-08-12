@@ -5,49 +5,52 @@
  * @author Chen Liang [code@chen.technology]
  */
 
+/*eslint "no-unused-expressions": 0 */
+
+
 /*!
  * Module dependencies.
  */
-var Promise = require('bluebird');
-var Producer = require('./../lib/producer.js');
+// var Promise = require('bluebird');
+// var Producer = require('./../lib/producer.js');
 var Router = require('./../lib/router.js');
-var debug = require('debug')('broker:test:router');
+// var debug = require('debug')('broker:test:router');
 
-describe('Router', function () {
-  describe('constructer(options)', function () {
-    it('throw if no `options.producer`', function () {
-      expect(function () {
-        var router = new Router();
+describe('Router', function() {
+  describe('constructer(options)', function() {
+    it('throw if no `options.producer`', function() {
+      expect(function() {
+        new Router();
       }).to.throw;
     });
-    it('assigns options to this.options', function () {
+    it('assigns options to this.options', function() {
       var options = {
-        producer: {}
+        producer: {},
       };
       var router = new Router(options);
       router.options
         .should.equal(options);
     });
-    it('assigns options.producer to this.producer', function () {
+    it('assigns options.producer to this.producer', function() {
       var producer = {};
       var options = {
-        producer: producer
+        producer: producer,
       };
       var router = new Router(options);
       router.producer
         .should.equal(producer);
     });
   });
-  describe('#route(options)', function () {
-    it('override `routingKey`', function () {
+  describe('#route(options)', function() {
+    it('override `routingKey`', function() {
       var producer = {};
       var options = {
         producer: producer,
-        routingKey: 'log'
+        routingKey: 'log',
       };
       var router = new Router(options);
       var newRouter = router.route({
-        routingKey: 'test'
+        routingKey: 'test',
       });
       newRouter.should.be.an.instanceOf(Router);
       newRouter.producer.should.equal(producer);
@@ -55,12 +58,12 @@ describe('Router', function () {
         .should.equal('test');
     });
   });
-  describe('#append(subRoute)', function () {
-    describe('when router.options.routingKey not exist', function () {
-      it('use subRoute as routingKey', function () {
+  describe('#append(subRoute)', function() {
+    describe('when router.options.routingKey not exist', function() {
+      it('use subRoute as routingKey', function() {
         var producer = {};
         var options = {
-          producer: producer
+          producer: producer,
         };
         var router = new Router(options);
         var newRouter = router.append('test');
@@ -69,12 +72,12 @@ describe('Router', function () {
           .should.equal('test');
       });
     });
-    describe('when router.options.routingKey exist', function () {
-      it('append `.subRoute`', function () {
+    describe('when router.options.routingKey exist', function() {
+      it('append `.subRoute`', function() {
         var producer = {};
         var options = {
           producer: producer,
-          routingKey: 'log'
+          routingKey: 'log',
         };
         var router = new Router(options);
         var newRouter = router.append('test');

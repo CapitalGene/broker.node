@@ -16,11 +16,11 @@ chai.use(require('chai-as-promised'));
 global.sinon = require('sinon');
 
 var debug = require('debug')('broker:test:root');
-before(function () {
+before(function() {
   var uri = process.env.URI || 'amqp://localhost';
   var parsedUri = urlLib.parse(uri);
-  var username = parsedUri.auth ? parsedUri.auth.split(':')[0]: undefined;
-  var password = parsedUri.auth ? parsedUri.auth.split(':')[1]: undefined;
+  var username = parsedUri.auth ? parsedUri.auth.split(':')[0] : undefined;
+  var password = parsedUri.auth ? parsedUri.auth.split(':')[1] : undefined;
   this.testOptions = {
     uri: uri,
     host: parsedUri.hostname,
