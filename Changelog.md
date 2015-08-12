@@ -1,5 +1,11 @@
 # Change Log
 
+## v0.0.10
+* **.eslintrc** update
+* added .esformatter
+* **deps**: chai^3.2.0
+* added .gitlab-ci.yml
+
 ## v0.0.9
 * `chai-as-promised@5.0.0`
 * *Producer#publish* supports `options.headers` 
