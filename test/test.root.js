@@ -18,7 +18,6 @@ var debug = require('debug')('broker:test:root');
 
 before(function() {
   var uri = process.env.URI || 'amqp://localhost';
-  debug('uri', uri);
   var parsedUri = urlLib.parse(uri);
   var username = parsedUri.auth ? parsedUri.auth.split(':')[0] : undefined;
   var password = parsedUri.auth ? parsedUri.auth.split(':')[1] : undefined;
