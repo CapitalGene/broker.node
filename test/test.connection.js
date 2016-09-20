@@ -141,7 +141,7 @@ describe('Connection', function() {
     });
     describe('with `maxRetries`', function() {
       beforeEach(function() {
-        this.connection.uri = 'amqp://localhost:5672';
+        this.connection.uri = 'amqp://localhost:25672';
         this.connection._establishConnection
           .returns(
             originalEstablishConnection.bind(this.connection)()
@@ -164,7 +164,7 @@ describe('Connection', function() {
       beforeEach(function() {
         var self = this;
         var originalUri = this.connection.uri;
-        this.connection.uri = 'amqp://localhost:5672';
+        this.connection.uri = 'amqp://localhost:25672';
         this.connection._establishConnection
           .returns(
             originalEstablishConnection.bind(this.connection)()
@@ -213,7 +213,7 @@ describe('Connection', function() {
       this.timeout(30 * 1000);
       beforeEach(function() {
         var wrongOptions = _.clone(this.testOptions);
-        wrongOptions.uri = 'amqp://localhost:5672';
+        wrongOptions.uri = 'amqp://localhost:25672';
         wrongOptions.autoRetry = true;
         wrongOptions.maxRetries = 4;
         this.connection = new Connection(wrongOptions);

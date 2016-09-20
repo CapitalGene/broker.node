@@ -126,6 +126,7 @@ describe('Queue', function() {
         exclusive: true,
         autoDelete: true
       }).use(this.connection.channel());
+
       queue.queueDeclare()
         .then(function() {
           return queue.checkQueue('broker.test.queue');
@@ -141,6 +142,7 @@ describe('Queue', function() {
         .then(function(message) {
           return queue.publish(message);
         })
+        .delay(2 * 1000)
         .then(function(result) {
           debug('publish', result);
           return queue.checkQueue('broker.test.queue');
@@ -176,6 +178,7 @@ describe('Queue', function() {
         .then(function(message) {
           return queue.publish(message);
         })
+        .delay(2 * 1000)
         .then(function(result) {
           debug('publish', result);
           return queue.checkQueue();
