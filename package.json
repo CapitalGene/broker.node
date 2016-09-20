@@ -3,7 +3,6 @@
   "version": "0.0.10",
   "description": "broker",
   "main": "lib/index.js",
-  "private": true,
   "directories": {
     "test": "test"
   },
@@ -14,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/CapitalGene/broker.node.git"
   },
-  "author": "Chen Liang",
+  "author": "Chen Liang <code@chen.technology>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CapitalGene/broker.node/issues"
@@ -24,12 +23,12 @@
     "chai": "^3.2.0",
     "chai-as-promised": "^5.0.0",
     "chai-things": "^0.2.0",
-    "mocha": "^2.1.0",
+    "mocha": "^3.0.2",
     "sinon": "^1.12.2",
     "sinon-chai": "^2.5.0"
   },
   "dependencies": {
-    "amqplib": "CapitalGene/amqp.node",
+    "amqp-node": "^0.3.3",
     "bluebird": ">=2.6.2",
     "debug": ">=2.1.1",
     "generic-pool": "^2.1.1",
