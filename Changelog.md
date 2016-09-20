@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.0.11 (2016-09-20)
+* 1324f6ec fixed test `.delay`
+* 9d6929f9 **Deps**: use `amqp-node`
+
+
 ## v0.0.10
 * **.eslintrc** update
 * added .esformatter
@@ -8,7 +13,7 @@
 
 ## v0.0.9
 * `chai-as-promised@5.0.0`
-* *Producer#publish* supports `options.headers` 
+* *Producer#publish* supports `options.headers`
 
 ## v0.0.8
 * [Connection] takes `options.transportOptions`
