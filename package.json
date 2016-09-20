@@ -1,6 +1,6 @@
 {
   "name": "broker-node",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "broker",
   "main": "lib/index.js",
   "directories": {
