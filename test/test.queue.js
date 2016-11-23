@@ -13,7 +13,7 @@ var Queue = require('./../lib/queue.js');
 var Exchange = require('./../lib/exchange.js');
 var debug = require('debug')('broker:test:queue');
 var Promise = require('bluebird');
-var uuid = require('node-uuid');
+var uuid = require('uuid');
 
 describe('Queue', function() {
   this.timeout(10 * 1000);
